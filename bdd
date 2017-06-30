@@ -1,0 +1,74 @@
+CREATE TABLE Atencion
+  (
+    id_atencion    INTEGER NOT NULL,
+    fecha_atencion DATE NOT NULL ,
+    hora_atencion  DATE NOT NULL ,
+    estado         VARCHAR (40)  NOT NULL,
+    usuario_rut_usuario INTEGER NOT NULL ,
+    Medico_rut_medico   INTEGER NOT NULL ,
+    estado_id_estado    INTEGER NOT NULL
+  ) ;
+
+ALTER TABLE Atencion ADD CONSTRAINT Atencion_PK PRIMARY KEY ( id_atencion ) ;
+
+
+CREATE TABLE Medico
+  (
+    rut_medico         INTEGER NOT NULL ,
+    nombre_medico      VARCHAR (35) NOT NULL ,
+    fecha_contratacion DATE NOT NULL ,
+    especialidad       VARCHAR (40) NOT NULL ,
+    valor_consulta               INTEGER NOT NULL ,
+    especialidad_id_especialidad INTEGER NOT NULL
+  ) ;
+ALTER TABLE Medico ADD CONSTRAINT Medico_PK PRIMARY KEY ( rut_medico ) ;
+
+
+CREATE TABLE especialidad
+  (
+    id_especialidad     INTEGER NOT NULL ,
+    nombre_especialidad VARCHAR (40) NOT NULL
+  ) ;
+ALTER TABLE especialidad ADD CONSTRAINT especialidad_PK PRIMARY KEY ( id_especialidad ) ;
+
+
+CREATE TABLE estado
+  (
+    id_estado   INTEGER NOT NULL ,
+    descripcion VARCHAR (50) NOT NULL
+  ) ;
+ALTER TABLE estado ADD CONSTRAINT estado_PK PRIMARY KEY ( id_estado ) ;
+
+
+CREATE TABLE perfil
+  (
+    id_perfil INTEGER NOT NULL ,
+    cargo     VARCHAR (30) NOT NULL
+  ) ;
+ALTER TABLE perfil ADD CONSTRAINT perfil_PK PRIMARY KEY ( id_perfil ) ;
+
+
+CREATE TABLE usuario
+  (
+    rut_usuario      INTEGER NOT NULL ,
+    nombre_completo  VARCHAR (30) NOT NULL ,
+    fecha_nacimiento DATE NOT NULL ,
+    sexo             CHAR (1) ,
+    direccion        VARCHAR (40) NOT NULL ,
+    telefono         INTEGER NOT NULL ,
+    perfil_id_perfil INTEGER NOT NULL
+
+  ) ;
+
+ALTER TABLE usuario ADD CONSTRAINT usuario_PK PRIMARY KEY ( rut_usuario ) ;
+
+
+ALTER TABLE Atencion ADD CONSTRAINT Atencion_Medico_FK FOREIGN KEY ( Medico_rut_medico ) REFERENCES Medico ( rut_medico ) ;
+
+ALTER TABLE Atencion ADD CONSTRAINT Atencion_estado_FK FOREIGN KEY ( estado_id_estado ) REFERENCES estado ( id_estado ) ;
+
+ALTER TABLE Atencion ADD CONSTRAINT Atencion_usuario_FK FOREIGN KEY ( usuario_rut_usuario ) REFERENCES usuario ( rut_usuario ) ;
+
+ALTER TABLE Medico ADD CONSTRAINT Medico_especialidad_FK FOREIGN KEY ( especialidad_id_especialidad ) REFERENCES especialidad ( id_especialidad ) ;
+
+ALTER TABLE usuario ADD CONSTRAINT usuario_perfil_FK FOREIGN KEY ( perfil_id_perfil ) REFERENCES perfil ( id_perfil ) ;

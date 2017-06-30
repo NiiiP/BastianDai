@@ -1,0 +1,32 @@
+header {
+	background:#2c3e50;
+	color:#fff;
+}
+footer {
+	background:#2c3e50;
+	color:#fff;
+}
+.main {
+	background:#f2f2f2;
+}
+.borde {
+	border: 1px solid black;
+  opacity: 0.9;
+  filter:  alpha(opacity=90);
+}
+body{
+
+  background-image: url(../img/fondo.jpg);
+ 	background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color:#464646;
+}
+@media only screen and (max-width: 767px) {
+body {
+
+    background-image: url(../img/fondo.jpg);
+
+    }
+}
