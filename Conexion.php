@@ -1,15 +1,11 @@
 <?php
-
-function conectar()
-{ 
-	$link=mysqli_connect('localhost','root','') or die('ERROR al conectar');
- 	mysqli_select_db($link,'dai') or die("ERROR de BD");
-  	return $link;
+$servername = "localhost";
+$username = "root";
+#En tu local va vacio
+$password = "root";
+$dbname = "dai";
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$stmt = $conn->query("SELECT * FROM perfil"); 
+foreach ($stmt as $key => $value) {
+	echo "el id ".$value["id_perfil"]."  =  ".$value["cargo"]."<br>";
 }
-
-	conectar();
-
-
-	$sql = "insert into "
- ?>
-
